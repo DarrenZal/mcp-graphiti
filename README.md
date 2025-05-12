@@ -276,13 +276,13 @@ To optimize Graphiti knowledge graph queries and minimize costs, configure CLINE
 When answering questions about this codebase, follow this efficient process:
 
 1. ALWAYS START with these THREE SEARCHES ONLY:
-   ```
+
    search_nodes({"query": "comprehensive terms covering main concepts", "group_ids": ["rawr-mcp-graphiti"], "max_nodes": 25})
    
    search_facts({"query": "similar comprehensive terms", "group_ids": ["rawr-mcp-graphiti"], "max_facts": 25})
    
    get_episodes({"group_id": "rawr-mcp-graphiti", "last_n": 5})
-   ```
+
 
 2. ANALYZE ALL search results FULLY before making ANY additional calls.
 
