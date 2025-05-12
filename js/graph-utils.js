@@ -512,27 +512,36 @@ function getRelationshipTypes() {
 function filterGraph(nodeTypes, relationshipTypes) {
     if (!cy) return;
     
-    // Reset all elements
+    // First, show all elements
+    cy.elements().style('display', 'element');
     cy.elements().removeClass('hidden');
     
-    // Filter nodes
-    cy.nodes().forEach(node => {
+    // Create a collection of nodes to hide
+    let nodesToHide = cy.nodes().filter(node => {
         const nodeType = node.data('nodeType');
-        if (!nodeTypes.includes(nodeType)) {
-            node.addClass('hidden');
-        }
+        return !nodeTypes.includes(nodeType);
     });
     
-    // Filter edges
-    cy.edges().forEach(edge => {
+    // Hide nodes that don't match the filter
+    nodesToHide.style('display', 'none');
+    nodesToHide.addClass('hidden');
+    
+    // Create a collection of edges to hide
+    let edgesToHide = cy.edges().filter(edge => {
         const relType = edge.data('type');
-        const sourceVisible = !edge.source().hasClass('hidden');
-        const targetVisible = !edge.target().hasClass('hidden');
+        const sourceVisible = nodeTypes.includes(edge.source().data('nodeType'));
+        const targetVisible = nodeTypes.includes(edge.target().data('nodeType'));
         
-        if (!relationshipTypes.includes(relType) || !sourceVisible || !targetVisible) {
-            edge.addClass('hidden');
-        }
+        return !relationshipTypes.includes(relType) || !sourceVisible || !targetVisible;
     });
+    
+    // Hide edges that don't match the filter
+    edgesToHide.style('display', 'none');
+    edgesToHide.addClass('hidden');
+    
+    // Log the number of hidden elements for debugging
+    console.log(`Filtered graph: ${nodesToHide.length} nodes and ${edgesToHide.length} edges hidden`);
+    console.log(`Visible node types: ${nodeTypes.join(', ')}`);
 }
 
 /**

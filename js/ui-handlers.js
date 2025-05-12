@@ -32,6 +32,10 @@ function initUI() {
     // Log the number of nodes and edges
     if (cy) {
         console.log(`Graph contains ${cy.nodes().length} nodes and ${cy.edges().length} edges`);
+        
+        // Apply filters immediately to hide Episodic and Unknown nodes by default
+        console.log('Applying initial filters to hide Episodic and Unknown nodes');
+        filterGraph(activeNodeTypes, activeRelationshipTypes);
     }
 }
 
@@ -54,7 +58,8 @@ function initFilters() {
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.id = `filter-node-${type}`;
-        checkbox.checked = true;
+        // Set Episodic and Unknown types to unchecked by default
+        checkbox.checked = !(type === 'Episodic' || type === 'Unknown');
         checkbox.addEventListener('change', updateFilters);
         
         const label = document.createElement('label');
@@ -93,8 +98,8 @@ function initFilters() {
     // Initialize reset filters button
     document.getElementById('resetFiltersBtn').addEventListener('click', resetFilters);
     
-    // Set initial active filters
-    activeNodeTypes = [...nodeTypes];
+    // Set initial active filters, excluding Episodic and Unknown
+    activeNodeTypes = nodeTypes.filter(type => type !== 'Episodic' && type !== 'Unknown');
     activeRelationshipTypes = [...relationshipTypes];
 }
 
