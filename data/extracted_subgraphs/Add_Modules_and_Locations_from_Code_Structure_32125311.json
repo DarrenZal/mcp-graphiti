@@ -1,0 +1,231 @@
+{
+  "nodes": [
+    {
+      "uuid": "mod-cli-commands",
+      "entity_type": "Module",
+      "properties": {
+        "name": "CLI Commands",
+        "description": "Handles specific CLI commands (docker, project, setup).",
+        "responsibility": "Parses and executes user commands."
+      }
+    },
+    {
+      "uuid": "mod-cli-logic",
+      "entity_type": "Module",
+      "properties": {
+        "name": "CLI Logic",
+        "description": "Core logic for Docker Compose generation and project registration.",
+        "responsibility": "Implements the main functionalities of the CLI tool."
+      }
+    },
+    {
+      "uuid": "mod-cli-utils",
+      "entity_type": "Module",
+      "properties": {
+        "name": "CLI Utils",
+        "description": "Utility functions for config, paths, processes, YAML.",
+        "responsibility": "Provides shared helper functions for the CLI."
+      }
+    },
+    {
+      "uuid": "mod-web-ui",
+      "entity_type": "Module",
+      "properties": {
+        "name": "Explorer UI",
+        "description": "Handles HTML structure, CSS styling, and UI interactions for the graph explorer.",
+        "responsibility": "Provides the user interface for graph visualization."
+      }
+    },
+    {
+      "uuid": "mod-web-graphlogic",
+      "entity_type": "Module",
+      "properties": {
+        "name": "Explorer Graph Logic",
+        "description": "JavaScript logic for fetching, processing, and visualizing graph data using Cytoscape.js.",
+        "responsibility": "Manages graph data handling and rendering."
+      }
+    },
+    {
+      "uuid": "mod-web-data",
+      "entity_type": "Module",
+      "properties": {
+        "name": "Explorer Data",
+        "description": "Represents the graph data source (JSON file) used by the explorer.",
+        "responsibility": "Stores the exported graph data."
+      }
+    },
+    {
+      "uuid": "mod-mcp-entities",
+      "entity_type": "Module",
+      "properties": {
+        "name": "Entity Definitions",
+        "description": "Defines the structure, types, and registry of entities used in the knowledge graph.",
+        "responsibility": "Provides the data model for the knowledge graph."
+      }
+    },
+    {
+      "uuid": "mod-mcp-core",
+      "entity_type": "Module",
+      "properties": {
+        "name": "MCP Server Core",
+        "description": "Main logic for the MCP server, handling requests, LLM interaction, and Neo4j operations.",
+        "responsibility": "Orchestrates the core MCP server functionality."
+      }
+    }
+  ],
+  "edges": [
+    {
+      "uuid": "edge-c1",
+      "source_uuid": "comp-cli",
+      "target_uuid": "mod-cli-commands",
+      "relationship_type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-c2",
+      "source_uuid": "comp-cli",
+      "target_uuid": "mod-cli-logic",
+      "relationship_type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-c3",
+      "source_uuid": "comp-cli",
+      "target_uuid": "mod-cli-utils",
+      "relationship_type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-c4",
+      "source_uuid": "comp-explorer",
+      "target_uuid": "mod-web-ui",
+      "relationship_type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-c5",
+      "source_uuid": "comp-explorer",
+      "target_uuid": "mod-web-graphlogic",
+      "relationship_type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-c6",
+      "source_uuid": "comp-explorer",
+      "target_uuid": "mod-web-data",
+      "relationship_type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-c7",
+      "source_uuid": "comp-mcp-server",
+      "target_uuid": "mod-mcp-entities",
+      "relationship_type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-c8",
+      "source_uuid": "comp-mcp-server",
+      "target_uuid": "mod-mcp-core",
+      "relationship_type": "CONTAINS",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-l1",
+      "source_uuid": "comp-cli",
+      "target_uuid": "graphiti_cli/",
+      "relationship_type": "LOCATED_IN",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-l2",
+      "source_uuid": "comp-mcp-server",
+      "target_uuid": "graphiti_mcp_server.py",
+      "relationship_type": "LOCATED_IN",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-l3",
+      "source_uuid": "comp-docker",
+      "target_uuid": "base-compose.yaml",
+      "relationship_type": "LOCATED_IN",
+      "properties": {
+        "note": "Primary template, managed via CLI logic"
+      }
+    },
+    {
+      "uuid": "edge-l4",
+      "source_uuid": "comp-docker",
+      "target_uuid": "Dockerfile",
+      "relationship_type": "LOCATED_IN",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-l5",
+      "source_uuid": "comp-explorer",
+      "target_uuid": "website/",
+      "relationship_type": "LOCATED_IN",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-l6",
+      "source_uuid": "mod-cli-commands",
+      "target_uuid": "graphiti_cli/commands/",
+      "relationship_type": "LOCATED_IN",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-l7",
+      "source_uuid": "mod-cli-logic",
+      "target_uuid": "graphiti_cli/logic/",
+      "relationship_type": "LOCATED_IN",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-l8",
+      "source_uuid": "mod-cli-utils",
+      "target_uuid": "graphiti_cli/utils/",
+      "relationship_type": "LOCATED_IN",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-l9",
+      "source_uuid": "mod-web-ui",
+      "target_uuid": "website/css/",
+      "relationship_type": "LOCATED_IN",
+      "properties": {
+        "note": "Also index.html, js/ui-handlers.js"
+      }
+    },
+    {
+      "uuid": "edge-l10",
+      "source_uuid": "mod-web-graphlogic",
+      "target_uuid": "website/js/",
+      "relationship_type": "LOCATED_IN",
+      "properties": {
+        "note": "Excludes ui-handlers.js"
+      }
+    },
+    {
+      "uuid": "edge-l11",
+      "source_uuid": "mod-web-data",
+      "target_uuid": "website/data/",
+      "relationship_type": "LOCATED_IN",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-l12",
+      "source_uuid": "mod-mcp-entities",
+      "target_uuid": "entities/",
+      "relationship_type": "LOCATED_IN",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-l13",
+      "source_uuid": "mod-mcp-core",
+      "target_uuid": "graphiti_mcp_server.py",
+      "relationship_type": "LOCATED_IN",
+      "properties": {}
+    }
+  ]
+}

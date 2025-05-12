@@ -1,0 +1,388 @@
+{
+  "nodes": [
+    {
+      "uuid": "comp-cli",
+      "entity_type": "Component",
+      "properties": {
+        "name": "Graphiti CLI Tool",
+        "description": "Command-line interface for managing Graphiti projects, Docker configurations, and services.",
+        "responsibility": "Provides user interface for setup, configuration, and control of the multi-project Graphiti environment.",
+        "status": "Active",
+        "path": "graphiti_cli/"
+      }
+    },
+    {
+      "uuid": "comp-mcp-server",
+      "entity_type": "Component",
+      "properties": {
+        "name": "MCP Server",
+        "description": "Graphiti MCP server instance responsible for ingesting text, extracting knowledge, storing it in Neo4j, and serving it via MCP.",
+        "responsibility": "Core knowledge graph processing and serving via Model Context Protocol.",
+        "status": "Active",
+        "path": "graphiti_mcp_server.py"
+      }
+    },
+    {
+      "uuid": "comp-docker",
+      "entity_type": "Component",
+      "properties": {
+        "name": "Docker Integration",
+        "description": "Manages the containerized deployment of Neo4j and MCP server instances using Docker Compose.",
+        "responsibility": "Orchestrates service deployment, isolation, and lifecycle.",
+        "status": "Active"
+      }
+    },
+    {
+      "uuid": "comp-explorer",
+      "entity_type": "Component",
+      "properties": {
+        "name": "CodeArchGraph Explorer",
+        "description": "Web-based visualization tool for exploring the CodeArchGraph knowledge graph.",
+        "responsibility": "Provides interactive visualization of the graph data.",
+        "status": "Active",
+        "path": "website/"
+      }
+    },
+    {
+      "uuid": "res-neo4j",
+      "entity_type": "Resource",
+      "properties": {
+        "name": "Neo4j",
+        "description": "Graph database used as the storage backend for temporal knowledge graphs.",
+        "type": "Database"
+      }
+    },
+    {
+      "uuid": "res-docker",
+      "entity_type": "Resource",
+      "properties": {
+        "name": "Docker",
+        "description": "Containerization platform used for deploying services.",
+        "type": "Platform"
+      }
+    },
+    {
+      "uuid": "res-openai",
+      "entity_type": "Resource",
+      "properties": {
+        "name": "OpenAI API",
+        "description": "Provides Large Language Models for entity and relationship extraction.",
+        "type": "API"
+      }
+    },
+    {
+      "uuid": "res-python",
+      "entity_type": "Resource",
+      "properties": {
+        "name": "Python",
+        "description": "Primary programming language for the backend components.",
+        "type": "Language"
+      }
+    },
+    {
+      "uuid": "res-js",
+      "entity_type": "Resource",
+      "properties": {
+        "name": "JavaScript",
+        "description": "Primary programming language for the frontend explorer.",
+        "type": "Language"
+      }
+    },
+    {
+      "uuid": "res-cytoscape",
+      "entity_type": "Resource",
+      "properties": {
+        "name": "Cytoscape.js",
+        "description": "JavaScript library for graph visualization.",
+        "type": "Library"
+      }
+    },
+    {
+      "uuid": "con-kg",
+      "entity_type": "Concept",
+      "properties": {
+        "name": "Knowledge Graph",
+        "description": "Representation of information as nodes and edges."
+      }
+    },
+    {
+      "uuid": "con-temporal-kg",
+      "entity_type": "Concept",
+      "properties": {
+        "name": "Temporal Knowledge Graph",
+        "description": "Knowledge graph that tracks changes over time via episodes."
+      }
+    },
+    {
+      "uuid": "con-mcp",
+      "entity_type": "Concept",
+      "properties": {
+        "name": "Model Context Protocol (MCP)",
+        "description": "Communication standard between AI agents/IDEs and context servers."
+      }
+    },
+    {
+      "uuid": "con-codearchgraph",
+      "entity_type": "Concept",
+      "properties": {
+        "name": "CodeArchGraph Schema",
+        "description": "Schema for representing codebase architecture in a knowledge graph."
+      }
+    },
+    {
+      "uuid": "con-isolation",
+      "entity_type": "Concept",
+      "properties": {
+        "name": "Project Isolation",
+        "description": "Keeping different projects' data and configurations separate."
+      }
+    },
+    {
+      "uuid": "con-kg-as-code",
+      "entity_type": "Concept",
+      "properties": {
+        "name": "Knowledge Graphs as Code",
+        "description": "Managing knowledge graph data and schema under version control."
+      }
+    },
+    {
+      "uuid": "feat-multi-proj",
+      "entity_type": "Feature",
+      "properties": {
+        "name": "Multi-Project Knowledge Graphs",
+        "description": "Supports multiple isolated knowledge graphs using a single Neo4j instance."
+      }
+    },
+    {
+      "uuid": "feat-compose-gen",
+      "entity_type": "Feature",
+      "properties": {
+        "name": "Automated Docker Compose Generation",
+        "description": "CLI automatically generates Docker Compose files based on project configuration."
+      }
+    },
+    {
+      "uuid": "feat-editor-disc",
+      "entity_type": "Feature",
+      "properties": {
+        "name": "Editor Auto-Discovery",
+        "description": "Automatically configures IDEs (like Cursor) to connect to the correct MCP server."
+      }
+    },
+    {
+      "uuid": "feat-viz",
+      "entity_type": "Feature",
+      "properties": {
+        "name": "Knowledge Graph Visualization",
+        "description": "Provides a web interface to explore the knowledge graph visually."
+      }
+    },
+    {
+      "uuid": "feat-kg-import-export",
+      "entity_type": "Feature",
+      "properties": {
+        "name": "Knowledge Graph Import/Export",
+        "description": "Allows exporting the graph to JSON and restoring from dumps."
+      }
+    },
+    {
+      "uuid": "if-mcp-sse",
+      "entity_type": "Interface",
+      "properties": {
+        "name": "MCP Protocol (SSE)",
+        "description": "Server-Sent Events endpoint for MCP communication.",
+        "type": "API/Protocol"
+      }
+    },
+    {
+      "uuid": "if-docker",
+      "entity_type": "Interface",
+      "properties": {
+        "name": "Docker API/CLI",
+        "description": "Interface for controlling the Docker daemon.",
+        "type": "API/CLI"
+      }
+    },
+    {
+      "uuid": "if-neo4j-bolt",
+      "entity_type": "Interface",
+      "properties": {
+        "name": "Neo4j Bolt Protocol",
+        "description": "Binary protocol for communicating with Neo4j database.",
+        "type": "Protocol"
+      }
+    },
+    {
+      "uuid": "if-cli",
+      "entity_type": "Interface",
+      "properties": {
+        "name": "CLI Interface",
+        "description": "Command-line interface for user interaction.",
+        "type": "CLI"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "uuid": "edge-1",
+      "source_uuid": "comp-mcp-server",
+      "target_uuid": "res-neo4j",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-2",
+      "source_uuid": "comp-mcp-server",
+      "target_uuid": "res-openai",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-3",
+      "source_uuid": "comp-mcp-server",
+      "target_uuid": "res-python",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-4",
+      "source_uuid": "comp-cli",
+      "target_uuid": "res-docker",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-5",
+      "source_uuid": "comp-cli",
+      "target_uuid": "res-python",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-6",
+      "source_uuid": "comp-docker",
+      "target_uuid": "res-docker",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-7",
+      "source_uuid": "comp-explorer",
+      "target_uuid": "res-js",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-8",
+      "source_uuid": "comp-explorer",
+      "target_uuid": "res-cytoscape",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-9",
+      "source_uuid": "comp-mcp-server",
+      "target_uuid": "if-mcp-sse",
+      "relationship_type": "EXPOSES",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-10",
+      "source_uuid": "comp-mcp-server",
+      "target_uuid": "if-neo4j-bolt",
+      "relationship_type": "CONSUMES",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-12",
+      "source_uuid": "comp-cli",
+      "target_uuid": "if-docker",
+      "relationship_type": "CONSUMES",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-13",
+      "source_uuid": "comp-cli",
+      "target_uuid": "if-cli",
+      "relationship_type": "EXPOSES",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-15",
+      "source_uuid": "comp-cli",
+      "target_uuid": "feat-multi-proj",
+      "relationship_type": "IMPLEMENTS",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-16",
+      "source_uuid": "comp-docker",
+      "target_uuid": "feat-multi-proj",
+      "relationship_type": "IMPLEMENTS",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-17",
+      "source_uuid": "comp-cli",
+      "target_uuid": "feat-compose-gen",
+      "relationship_type": "IMPLEMENTS",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-18",
+      "source_uuid": "comp-cli",
+      "target_uuid": "feat-editor-disc",
+      "relationship_type": "IMPLEMENTS",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-19",
+      "source_uuid": "comp-explorer",
+      "target_uuid": "feat-viz",
+      "relationship_type": "IMPLEMENTS",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-21",
+      "source_uuid": "comp-mcp-server",
+      "target_uuid": "con-kg",
+      "relationship_type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-22",
+      "source_uuid": "comp-mcp-server",
+      "target_uuid": "con-temporal-kg",
+      "relationship_type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-23",
+      "source_uuid": "comp-mcp-server",
+      "target_uuid": "con-mcp",
+      "relationship_type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-24",
+      "source_uuid": "comp-explorer",
+      "target_uuid": "con-codearchgraph",
+      "relationship_type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-25",
+      "source_uuid": "comp-docker",
+      "target_uuid": "con-isolation",
+      "relationship_type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-26",
+      "source_uuid": "feat-multi-proj",
+      "target_uuid": "con-isolation",
+      "relationship_type": "RELATED_TO",
+      "properties": {}
+    }
+  ]
+}

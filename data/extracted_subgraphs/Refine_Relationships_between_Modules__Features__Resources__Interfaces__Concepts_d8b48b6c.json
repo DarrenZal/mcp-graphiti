@@ -1,0 +1,216 @@
+{
+  "edges": [
+    {
+      "uuid": "edge-r1",
+      "source_uuid": "mod-cli-commands",
+      "target_uuid": "mod-cli-logic",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r2",
+      "source_uuid": "mod-cli-commands",
+      "target_uuid": "mod-cli-utils",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r3",
+      "source_uuid": "mod-cli-logic",
+      "target_uuid": "mod-cli-utils",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r4",
+      "source_uuid": "mod-cli-logic",
+      "target_uuid": "if-docker",
+      "relationship_type": "CONSUMES",
+      "properties": {
+        "note": "Indirectly via process execution"
+      }
+    },
+    {
+      "uuid": "edge-r5",
+      "source_uuid": "mod-mcp-core",
+      "target_uuid": "mod-mcp-entities",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r6",
+      "source_uuid": "mod-mcp-core",
+      "target_uuid": "res-neo4j",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r7",
+      "source_uuid": "mod-mcp-core",
+      "target_uuid": "res-openai",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r8",
+      "source_uuid": "mod-mcp-core",
+      "target_uuid": "res-python",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r9",
+      "source_uuid": "mod-mcp-entities",
+      "target_uuid": "res-python",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r10",
+      "source_uuid": "mod-web-ui",
+      "target_uuid": "mod-web-graphlogic",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r11",
+      "source_uuid": "mod-web-ui",
+      "target_uuid": "res-js",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r12",
+      "source_uuid": "mod-web-graphlogic",
+      "target_uuid": "mod-web-data",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r13",
+      "source_uuid": "mod-web-graphlogic",
+      "target_uuid": "res-js",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r14",
+      "source_uuid": "mod-web-graphlogic",
+      "target_uuid": "res-cytoscape",
+      "relationship_type": "DEPENDS_ON",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r15",
+      "source_uuid": "mod-cli-logic",
+      "target_uuid": "feat-compose-gen",
+      "relationship_type": "IMPLEMENTS",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r16",
+      "source_uuid": "mod-cli-logic",
+      "target_uuid": "feat-multi-proj",
+      "relationship_type": "IMPLEMENTS",
+      "properties": {
+        "note": "Handles project registration part"
+      }
+    },
+    {
+      "uuid": "edge-r17",
+      "source_uuid": "mod-cli-commands",
+      "target_uuid": "feat-editor-disc",
+      "relationship_type": "IMPLEMENTS",
+      "properties": {
+        "note": "Via init command logic"
+      }
+    },
+    {
+      "uuid": "edge-r18",
+      "source_uuid": "mod-mcp-core",
+      "target_uuid": "feat-multi-proj",
+      "relationship_type": "IMPLEMENTS",
+      "properties": {
+        "note": "Handles group_id isolation"
+      }
+    },
+    {
+      "uuid": "edge-r19",
+      "source_uuid": "mod-web-ui",
+      "target_uuid": "feat-viz",
+      "relationship_type": "IMPLEMENTS",
+      "properties": {
+        "note": "Presentation layer"
+      }
+    },
+    {
+      "uuid": "edge-r20",
+      "source_uuid": "mod-web-graphlogic",
+      "target_uuid": "feat-viz",
+      "relationship_type": "IMPLEMENTS",
+      "properties": {
+        "note": "Data handling and rendering"
+      }
+    },
+    {
+      "uuid": "edge-r21",
+      "source_uuid": "mod-mcp-core",
+      "target_uuid": "if-mcp-sse",
+      "relationship_type": "EXPOSES",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r22",
+      "source_uuid": "mod-mcp-core",
+      "target_uuid": "if-neo4j-bolt",
+      "relationship_type": "CONSUMES",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r23",
+      "source_uuid": "mod-cli-commands",
+      "target_uuid": "if-cli",
+      "relationship_type": "EXPOSES",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r24",
+      "source_uuid": "mod-mcp-entities",
+      "target_uuid": "con-codearchgraph",
+      "relationship_type": "RELATED_TO",
+      "properties": {
+        "note": "Defines entities based on this schema concept"
+      }
+    },
+    {
+      "uuid": "edge-r25",
+      "source_uuid": "mod-mcp-core",
+      "target_uuid": "con-kg",
+      "relationship_type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r26",
+      "source_uuid": "mod-mcp-core",
+      "target_uuid": "con-temporal-kg",
+      "relationship_type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r27",
+      "source_uuid": "mod-mcp-core",
+      "target_uuid": "con-mcp",
+      "relationship_type": "RELATED_TO",
+      "properties": {}
+    },
+    {
+      "uuid": "edge-r28",
+      "source_uuid": "mod-cli-logic",
+      "target_uuid": "con-isolation",
+      "relationship_type": "RELATED_TO",
+      "properties": {
+        "note": "Generates isolated Docker configs"
+      }
+    }
+  ]
+}

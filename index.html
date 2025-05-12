@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeArchGraph Explorer</title>
+    <meta name="description" content="Interactive visualization of the CodeArchGraph knowledge graph for the rawr-mcp-graphiti project">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+    
+    <!-- External CSS libraries -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="bg-dark text-white py-3">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="h3 mb-0">CodeArchGraph Explorer</h1>
+                <div class="d-flex">
+                    <a href="https://github.com/rawr-ai/mcp-graphiti" target="_blank" class="btn btn-outline-light me-2">
+                        <i class="bi bi-github"></i> GitHub
+                    </a>
+                    <button id="fullscreenBtn" class="btn btn-outline-light">
+                        <i class="bi bi-fullscreen"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar p-3">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h5 class="mb-0">Filters</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>Node Types</h6>
+                        <div id="nodeTypeFilters" class="mb-3">
+                            <!-- Node type checkboxes will be added here dynamically -->
+                        </div>
+                        
+                        <h6>Relationship Types</h6>
+                        <div id="relationshipTypeFilters" class="mb-3">
+                            <!-- Relationship type checkboxes will be added here dynamically -->
+                        </div>
+                        
+                        <button id="resetFiltersBtn" class="btn btn-sm btn-outline-secondary">Reset Filters</button>
+                    </div>
+                </div>
+                
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h5 class="mb-0">Search</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <input type="text" id="searchInput" class="form-control" placeholder="Search nodes...">
+                            <button id="searchBtn" class="btn btn-outline-secondary">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h5 class="mb-0">Layout</h5>
+                    </div>
+                    <div class="card-body">
+                        <select id="layoutSelect" class="form-select mb-2">
+                            <option value="cose-bilkent">Cose-Bilkent (Default)</option>
+                            <option value="cose">Cose</option>
+                            <option value="breadthfirst">Breadth First</option>
+                            <option value="circle">Circle</option>
+                            <option value="grid">Grid</option>
+                            <option value="concentric">Concentric</option>
+                        </select>
+                        <button id="applyLayoutBtn" class="btn btn-sm btn-outline-secondary">Apply Layout</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Legend</h5>
+                    </div>
+                    <div class="card-body" id="legendContainer">
+                        <!-- Legend items will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main content -->
+            <div class="col-md-9 col-lg-10 main-content p-0">
+                <div id="cy" class="graph-container"></div>
+                
+                <!-- Node details panel (hidden by default) -->
+                <div id="nodeDetailsPanel" class="node-details-panel">
+                    <div class="node-details-header">
+                        <h4 id="nodeDetailsTitle">Node Details</h4>
+                        <button id="closeNodeDetailsBtn" class="btn btn-sm btn-outline-secondary">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+                    <div id="nodeDetailsContent" class="node-details-content">
+                        <!-- Node details will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2 text-light">Loading knowledge graph...</p>
+    </div>
+
+    <!-- External JS libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cytoscape@3.25.0/dist/cytoscape.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cytoscape-cose-bilkent@4.1.0/cytoscape-cose-bilkent.min.js"></script>
+    <script>
+        // Register the cose-bilkent layout
+        if (typeof cytoscape !== 'undefined' && typeof cytoscapeCoseBilkent !== 'undefined') {
+            cytoscape.use(cytoscapeCoseBilkent);
+        }
+    </script>
+    
+    <!-- Custom JS -->
+    <script src="js/config.js"></script>
+    <script src="js/graph-utils.js"></script>
+    <script src="js/ui-handlers.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
